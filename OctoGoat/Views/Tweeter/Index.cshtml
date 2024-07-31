@@ -1,0 +1,25 @@
+﻿@model TweeterModel?
+
+@{
+    ViewData["Title"] = "Create Tweeter";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Create Tweeter</h1>
+    <form method="post">
+        Name:
+        <input type="text" name="name" class="">
+        <br>
+        Tweet:
+        <textarea name="tweet" rows="2" cols="20" class=""></textarea>
+        <input type="submit" value="Submit" style="float: right;">
+    </form>
+    @if (Model != null)
+    {
+        <br></br>
+        <span>Name: @Model.Name</span>
+        <br></br>
+        <span>Tweet: @Model.Tweet</span>
+        <br>
+    }
+</div>

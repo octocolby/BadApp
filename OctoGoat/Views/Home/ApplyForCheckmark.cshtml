@@ -1,0 +1,25 @@
+﻿@model CheckmarkModel?
+
+@{
+    ViewData["Title"] = "Create Tweeter";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Apply for Checkmark</h1>
+    <form method="post">
+        Name:
+        <input type="text" name="name" class="">
+        <br>
+        Why do you deserve a checkmark:
+        <textarea name="null" rows="2" cols="20" class=""></textarea>
+        <input type="submit" value="Submit" style="float: right;">
+    </form>
+    @if (Model != null)
+    {
+        <br></br>
+        <span>Name: @Model.Name</span>
+        <br></br>
+        <span>Checkmark: @Model.Approved</span>
+        <br>
+    }
+</div>

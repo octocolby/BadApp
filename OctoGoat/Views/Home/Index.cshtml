@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TweeterModel>
+
+@{
+    ViewData["Title"] = "Tweeter";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Tweeter</h1>
+
+    <table>
+        <tbody>
+            @foreach(var tweeter in Model)
+            {
+                <tr>
+                    <td>
+                        @if (@tweeter.Checkmark == true)
+                        {
+                            <a>VERIFIED</a>
+                        }
+                    </td>
+                    <td>
+                        Name: @tweeter.Name
+                    </td>
+                    <td>
+                        Tweet: @tweeter.Tweet
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
