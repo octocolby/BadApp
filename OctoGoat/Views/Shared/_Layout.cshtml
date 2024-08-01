@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -28,6 +31,24 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ApplyForCheckmark">Apply for Checkmark</a>
                     </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <span>
+                            Hello <strong>@UserManager.GetUserName(User)</strong>!
+                        </span>
+                        <a class="nav-link btn btn-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                        <a class="nav-link btn btn-link text-dark" asp-controller="Account" asp-action="MyAccount">My Account</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="login" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

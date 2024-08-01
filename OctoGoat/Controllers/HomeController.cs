@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OctoGoat.Data;
@@ -7,6 +8,7 @@ using OctoGoat.Models;
 
 namespace OctoGoat.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -17,6 +19,7 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    [AllowAnonymous]
     public IActionResult Index()
     {
         var tweeters = _DbContext.TweeterModels;
@@ -32,9 +35,10 @@ public class HomeController : Controller
 
     public IActionResult ApplyForCheckmark(CheckmarkModel checkmarkModel)
     {
-        var f = _DbContext.Database.ExecuteSqlRaw("SELECT * FROM TweeterModels");
+        //var f = _DbContext.Database.ExecuteSqlRaw("SELECT * FROM TweeterModels");
         if (checkmarkModel.Name != null)
         {
+            checkmarkModel.Name = User.Identity.Name;
             var existingCheckmark = _DbContext.CheckmarkModels.FirstOrDefault(check => check.Name == checkmarkModel.Name);
             if (existingCheckmark == null)
             {

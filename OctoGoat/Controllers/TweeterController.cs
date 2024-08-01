@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OctoGoat.Data;
@@ -6,6 +7,7 @@ using OctoGoat.Models;
 
 namespace OctoGoat.Controllers;
 
+[Authorize]
 public class TweeterController : Controller
 {
     private readonly ILogger<TweeterController> _logger;
@@ -22,10 +24,10 @@ public class TweeterController : Controller
         {
             return View();
         }
+        //tweeterModel.Name = User.Identity.Name;
         _DbContext.TweeterModels.Add(tweeterModel);
         _DbContext.SaveChanges();
-        var first = _DbContext.TweeterModels.First();
-        return View(first);
+        return View(tweeterModel);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

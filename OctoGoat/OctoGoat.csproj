@@ -8,11 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.7" />
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Contact\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Account\Index.cshtml" />
     </ItemGroup>
 
 </Project>
